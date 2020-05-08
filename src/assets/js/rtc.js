@@ -12,6 +12,9 @@ import EventEmitter from './ee.js';
 import DamEventEmitter from "./emitter.js";
 import Presence from "./presence.js";
 import MetaData from "./metadata.js";
+import Room from "./room.js";
+
+var room = new Room();
 
 var DEBUG = false; // if (DEBUG) 
 var TIMEGAP = 6000;
