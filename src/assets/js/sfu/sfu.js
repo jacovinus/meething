@@ -3,12 +3,17 @@ import Room from "./room.js";
 import helper from "../helpers.js"
 import config from '../config.js';
 
+var self = null;
+
 export default class SFU extends EventEmitter {
     constructor(config) {
         super();
         this.config = config;
         console.log("SFU::config::%s", JSON.stringify(config));
         this.sfuRoom = new Room();
+
+        self = this;
+        return this;
     }
 
     init() {
@@ -55,6 +60,10 @@ export default class SFU extends EventEmitter {
         console.log("SFU::Join %s meething", room);
         this.room = room;
         this.sfuRoom.join(room, peerId);
+    }
+
+    connect(url, peerId) {
+        this.sfuRoom.joinExtraSFU(this.room, peerId, url);
     }
 
     async startBroadcast(peerCount) {
